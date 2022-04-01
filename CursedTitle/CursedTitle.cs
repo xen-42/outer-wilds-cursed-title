@@ -3,6 +3,7 @@ using OWML.Common;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace CursedTitle
 {
@@ -40,7 +41,16 @@ namespace CursedTitle
 
         public void OnTitleLogoAnimationComplete()
         {
-            Texture2D newLogo = ModHelper.Assets.GetTexture("outer worlds logo.png");
+            Texture2D newLogo;
+            UnityEngine.Random.InitState(Guid.NewGuid().GetHashCode());
+            if(UnityEngine.Random.Range(0, 100) < 99)
+            {
+                newLogo = ModHelper.Assets.GetTexture("real_logo_alt.png");
+            }
+            else
+            {
+                newLogo = ModHelper.Assets.GetTexture("real_logo.png");
+            }
 
             var logoSize = new Vector2(newLogo.width, newLogo.height);
 
